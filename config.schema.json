@@ -9,7 +9,6 @@
       "name": {
         "title": "Name",
         "type": "string",
-        "required": true,
         "default": "Garage Door"
       },
       "doorSensorPin": {
@@ -45,7 +44,8 @@
         "type": "string",
         "description": "Unique identifier for this garage door (optional)"
       }
-    }
+    },
+    "required": ["name"]
   },
   "layout": [
     {

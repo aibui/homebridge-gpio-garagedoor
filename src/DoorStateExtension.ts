@@ -2,13 +2,22 @@
  * Door State utilities for Homebridge Characteristic values
  */
 
-import { Characteristic, Service } from 'hap-nodejs';
+import { API } from 'homebridge';
 
-export function getCurrentDoorState(service: Service): number {
+// These will be set by the main plugin
+let Characteristic: any;
+let Service: any;
+
+export function setHAPTypes(api: API) {
+  Characteristic = api.hap.Characteristic;
+  Service = api.hap.Service;
+}
+
+export function getCurrentDoorState(service: any): number {
   return service.getCharacteristic(Characteristic.CurrentDoorState).value as number;
 }
 
-export function getTargetDoorState(service: Service): number {
+export function getTargetDoorState(service: any): number {
   return service.getCharacteristic(Characteristic.TargetDoorState).value as number;
 }
 

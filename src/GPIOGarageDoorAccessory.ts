@@ -9,7 +9,6 @@ import {
   AccessoryConfig,
   CharacteristicEventTypes,
 } from 'homebridge';
-import { Service, Characteristic } from 'hap-nodejs';
 
 import { DoorSensorPort } from './DoorSensorPort';
 import { SwitchPort } from './SwitchPort';
@@ -33,8 +32,8 @@ export class GPIOGarageDoorAccessory implements AccessoryPlugin {
   private doorSwitch?: SwitchPort;
 
   // Homebridge services
-  private readonly informationService: Service;
-  private readonly garageDoorService: Service;
+  private readonly informationService: any;
+  private readonly garageDoorService: any;
 
   constructor(log: Logger, config: GPIOGarageDoorConfig, api: API) {
     this.log = log;
@@ -57,7 +56,7 @@ export class GPIOGarageDoorAccessory implements AccessoryPlugin {
     // Add event listener for door state changes
     this.garageDoorService
       .getCharacteristic(api.hap.Characteristic.CurrentDoorState)
-      .on(CharacteristicEventTypes.CHANGE, (change) => {
+      .on(CharacteristicEventTypes.CHANGE, (change: any) => {
         this.log.info(
           `Garage Door state changed to ${getCurrentDoorStateDescription(change.newValue as number)}`
         );
@@ -119,7 +118,7 @@ export class GPIOGarageDoorAccessory implements AccessoryPlugin {
       .updateValue(false);
   }
 
-  getServices(): Service[] {
+  getServices(): any[] {
     return [this.informationService, this.garageDoorService];
   }
 }

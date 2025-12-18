@@ -2,18 +2,26 @@
  * Door Sensor Port for monitoring garage door state
  */
 
-import { Logger } from 'homebridge';
-import { Service, Characteristic } from 'hap-nodejs';
+import { Logger, API } from 'homebridge';
+
+// These will be set by the main plugin
+let Characteristic: any;
+let Service: any;
+
+export function setHAPTypes(api: API) {
+  Characteristic = api.hap.Characteristic;
+  Service = api.hap.Service;
+}
 import { GPIOPort } from './GPIOPort';
 import { getCurrentDoorState, getTargetDoorState } from './DoorStateExtension';
 
 export class DoorSensorPort extends GPIOPort {
-  private service: Service;
+  private service: any;
   private log: Logger;
   private closedSensorValue: number;
   public isClosed: boolean = false;
 
-  constructor(pin: number, service: Service, log: Logger, isNCSensor: boolean) {
+  constructor(pin: number, service: any, log: Logger, isNCSensor: boolean) {
     super(pin, 'in', 'both');
     this.service = service;
     this.log = log;

@@ -2,22 +2,30 @@
  * Switch Port for controlling garage door relay
  */
 
-import { Logger, CharacteristicEventTypes } from 'homebridge';
-import { Service, Characteristic, CharacteristicValue } from 'hap-nodejs';
+import { Logger, CharacteristicEventTypes, API, CharacteristicValue } from 'homebridge';
+
+// These will be set by the main plugin
+let Characteristic: any;
+let Service: any;
+
+export function setHAPTypes(api: API) {
+  Characteristic = api.hap.Characteristic;
+  Service = api.hap.Service;
+}
 import { GPIOPort, GPIOState } from './GPIOPort';
 import { DoorSensorPort } from './DoorSensorPort';
 import { asDoorState, asOperationState, getCurrentDoorState } from './DoorStateExtension';
 
 export class SwitchPort extends GPIOPort {
   private isOperating: boolean = false;
-  private service: Service;
+  private service: any;
   private log: Logger;
   private doorSensor?: DoorSensorPort;
   private doorOpensInSeconds: number;
 
   constructor(
     pin: number,
-    service: Service,
+    service: any,
     log: Logger,
     doorSensor: DoorSensorPort | undefined,
     doorOpensInSeconds: number = 15
