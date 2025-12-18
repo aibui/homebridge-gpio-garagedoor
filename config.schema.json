@@ -1,6 +1,7 @@
 {
   "pluginAlias": "GPIOGarageDoor",
   "pluginType": "accessory",
+  "packageName": "@aibui/homebridge-gpio-garagedoor",
   "singular": false,
   "schema": {
     "type": "object",
