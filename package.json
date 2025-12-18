@@ -1,33 +1,51 @@
 {
   "name": "homebridge-gpio-garagedoor",
+  "displayName": "GPIO Garage Door",
   "description": "Raspberry Pi GPIO based Garage Door plugin for Homebridge",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/kraigm/homebridge-gpio-garagedoor.git"
   },
   "license": "ISC",
-  "preferGlobal": true,
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "config.schema.json"
+  ],
   "keywords": [
     "homebridge-plugin",
     "homebridge",
     "garagedoor",
-    "raspberry",
-    "pi",
-    "gpio"
+    "garage-door",
+    "raspberry-pi",
+    "gpio",
+    "rpi"
   ],
   "engines": {
-    "node": ">=0.12.0",
-    "homebridge": ">=0.2.5"
+    "node": "^18.15.0 || ^20.0.0",
+    "homebridge": "^1.6.0"
   },
   "dependencies": {
-    "bluebird": "^3.3.4",
-    "onoff" : "1.1.0"
+    "onoff": "^6.0.3"
+  },
+  "peerDependencies": {
+    "homebridge": "^1.6.0"
   },
   "devDependencies": {
-    "typescript": "^1.8"
+    "@types/node": "^20.10.0",
+    "homebridge": "^1.7.0",
+    "typescript": "^5.3.0",
+    "rimraf": "^5.0.5"
   },
   "scripts": {
-    "prepublish": "node node_modules/typescript/bin/tsc --module commonjs index.ts -t ES5"
+    "build": "rimraf ./dist && tsc",
+    "prepublishOnly": "npm run build",
+    "postpublish": "npm run clean",
+    "clean": "rimraf ./dist"
+  },
+  "homepage": "https://github.com/kraigm/homebridge-gpio-garagedoor#readme",
+  "bugs": {
+    "url": "https://github.com/kraigm/homebridge-gpio-garagedoor/issues"
   }
 }

@@ -1,4 +1,31 @@
-node_modules
-typings
+# Source files and development dependencies
+src/
+node_modules/
 *.ts
+*.spec.js
+*.test.js
+
+# Build artifacts to exclude
 *.js.map
+*.d.ts.map
+
+# Development files
+.vscode/
+.idea/
+tsconfig.json
+.gitignore
+.git/
+
+# Documentation (keep README.md)
+CHANGELOG.md
+
+# Example files
+config.example.json
+
+# Test files
+test-plugin.js
+MIGRATION_SUMMARY.md
+
+# Misc
+.DS_Store
+*.log

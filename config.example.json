@@ -1,0 +1,29 @@
+{
+  "bridge": {
+    "name": "Homebridge",
+    "username": "CC:22:3D:E3:CE:30",
+    "port": 51826,
+    "pin": "031-45-154"
+  },
+  "accessories": [
+    {
+      "accessory": "GPIOGarageDoor",
+      "name": "Main Garage Door",
+      "doorSwitchPin": 23,
+      "doorSensorPin": 24,
+      "isNCSensor": false,
+      "doorOpensInSeconds": 15,
+      "id": "main-garage"
+    },
+    {
+      "accessory": "GPIOGarageDoor", 
+      "name": "Side Garage Door",
+      "doorSwitchPin": 25,
+      "doorSensorPin": 26,
+      "isNCSensor": true,
+      "doorOpensInSeconds": 12,
+      "id": "side-garage"
+    }
+  ],
+  "platforms": []
+}

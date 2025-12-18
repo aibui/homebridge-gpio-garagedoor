@@ -1,0 +1,69 @@
+{
+  "pluginAlias": "GPIOGarageDoor",
+  "pluginType": "accessory",
+  "singular": false,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "default": "Garage Door"
+      },
+      "doorSensorPin": {
+        "title": "Door Sensor Pin",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 40,
+        "description": "GPIO pin number for the door sensor"
+      },
+      "isNCSensor": {
+        "title": "Is Normally Closed Sensor",
+        "type": "boolean",
+        "default": false,
+        "description": "Set to true if your door sensor is normally closed (NC)"
+      },
+      "doorSwitchPin": {
+        "title": "Door Switch Pin",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 40,
+        "description": "GPIO pin number for the door switch/relay"
+      },
+      "doorOpensInSeconds": {
+        "title": "Door Opens In Seconds",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 120,
+        "default": 15,
+        "description": "Time it takes for the garage door to open/close in seconds"
+      },
+      "id": {
+        "title": "Unique ID",
+        "type": "string",
+        "description": "Unique identifier for this garage door (optional)"
+      }
+    }
+  },
+  "layout": [
+    {
+      "type": "fieldset",
+      "title": "Basic Settings",
+      "items": [
+        "name",
+        "id"
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "GPIO Configuration",
+      "items": [
+        "doorSensorPin",
+        "isNCSensor",
+        "doorSwitchPin",
+        "doorOpensInSeconds"
+      ]
+    }
+  ]
+}
